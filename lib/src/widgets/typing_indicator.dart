@@ -4,6 +4,7 @@ import '../../flutter_chat_ui.dart';
 import '../util.dart';
 import 'state/inherited_chat_theme.dart';
 import 'state/inherited_l10n.dart';
+import '../conditional/conditional.dart';
 
 class TypingIndicator extends StatefulWidget {
   const TypingIndicator({
@@ -416,7 +417,8 @@ class TypingAvatar extends StatelessWidget {
       backgroundColor: hasImage
           ? InheritedChatTheme.of(context).theme.userAvatarImageBackgroundColor
           : color,
-      backgroundImage: hasImage ? NetworkImage(author.imageUrl!) : null,
+      backgroundImage:
+          hasImage ? Conditional().getProvider(author.imageUrl!) : null,
       radius: 13,
       child: !hasImage
           ? Text(
